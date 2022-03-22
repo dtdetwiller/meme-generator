@@ -7,6 +7,10 @@ body {
   margin: 0;
 }
 
+main {
+  padding: 36px;
+}
+
 .header {
   display: flex;
   height: 65px;
@@ -29,4 +33,30 @@ body {
 .header--text {
   font-size: 0.75rem;
   font-weight: 500;
+}
+
+.form {
+  display: grid;
+  grid-template: 40px 40px / 1fr 1fr;
+  gap: 15px;
+}
+
+.form--input {
+  font-family: "Karla", sans-serif;
+  border: 1px solid #d5d4d8;
+  border-radius: 5px;
+  text-indent: 10px;
+  font-size: 12px;
+}
+
+.form--button {
+  grid-column: 1 / -1;
+  font-family: "Karla", sans-serif;
+  border-radius: 5px;
+  background: linear-gradient(90.41deg, #711f8d 1.14%, #a818da 100%);
+  border: none;
+  color: white;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
 }
