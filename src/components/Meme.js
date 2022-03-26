@@ -1,16 +1,24 @@
-import { useState } from "react"
-import memesData from "../memesData"
+import {useState, useEffect } from "react"
 
 export default function Meme() {
 
+	// State that holds the current meme and the top and bottom text
 	const [meme, setMeme] = useState({
 		topText: "", 
 		bottomText: "", 
 		randomImage: "https://i.imgflip.com/30b1gx.jpg"
 	})
 
-	const [allMemeImages, setAllMemeImages] = useState(memesData)
+	// State that holds all the meme data from the api request
+	const [allMemes, setAllMemes] = useState([])
 
+	useEffect(() => {
+		fetch("https://api.imgflip.com/get_memes")
+			.then(res => res.json())
+			.then(data => setAllMemes(data.data.memes))
+	}, [])
+
+	// Handles the event when text is changed in the the form inputs
 	function handleChange(event) {
 
 		const {name, value} = event.target
@@ -27,7 +35,7 @@ export default function Meme() {
 	// Returns a random meme image from the memesData file
 	function getMemeImage() {
 
-		const memesArr = memesData.data.memes
+		const memesArr = allMemes
 		const count = memesArr.length
 		const randIndex = Math.floor(Math.random() * count)
 		const url = memesArr[randIndex].url
